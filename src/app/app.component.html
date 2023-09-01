@@ -1,7 +1,9 @@
-<div class="container">
-  <app-category-list></app-category-list>
-  <app-recipe-list></app-recipe-list>
-</div>
-<footer>
-  <button class="order-button">Order</button>
-</footer>
+<section *ngFor="let category of recipesCategories">
+  <h2>{{category.title}}</h2>
+  <ul >
+    <li *ngFor="let recipe of category.recipes">
+    <app-recipe-element [recipe]="recipe" (recipeEvent)="actions($event)"></app-recipe-element>
+    </li>
+  </ul>
+</section>
+

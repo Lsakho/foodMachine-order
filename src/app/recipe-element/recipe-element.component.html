@@ -1,0 +1,6 @@
+<h3> {{recipe.title}}</h3>
+<img src="{{recipe.imageUrl}}" alt="">
+<p>{{recipe.price}}</p>
+<p>{{recipe.description}} </p>
+<button (click)="actions('add', recipe)">add</button>
+<button (click)="actions('remove', recipe)">remove</button>

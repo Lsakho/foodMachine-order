@@ -6,17 +6,21 @@ import { OrderPageComponent } from './order-page/order-page.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import {HttpClientModule} from '@angular/common/http';
+import { RecipeElementComponent } from './recipe-element/recipe-element.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     OrderPageComponent,
     CategoryListComponent,
-    RecipeListComponent
+    RecipeListComponent,
+    RecipeElementComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

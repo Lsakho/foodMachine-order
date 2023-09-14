@@ -1,1 +1,24 @@
-<p>order-page works!</p>
+<section>
+    <button (click)="actions({
+        type: 'send-order'
+    })">send Order</button>
+</section>
+<section *ngFor="let category of recipesCategories">
+    <h2>{{category.title}}</h2>
+    <ul >
+      <li *ngFor="let recipe of category.recipes">
+      <app-recipe-element [recipe]="recipe" (recipeEvent)="actions($event)"></app-recipe-element>
+      </li>
+    </ul>
+</section>
+<div>
+    <h1>Categories</h1>
+    <ul>
+        <li *ngFor="let category of recipesCategories" (click)="displayCategoryDetails(category)">
+            {{ category.title }}
+        </li>
+    </ul>
+</div>
+
+
+  

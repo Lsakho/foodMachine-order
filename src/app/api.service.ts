@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { RestoInterface } from '../datas.interface';
+import { RestoInterface } from './datas.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetRecipesService {
+export class APIService {
 
   constructor(
     private readonly _http: HttpClient

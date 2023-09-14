@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetRecipesService } from './Service/get-recipes.service';
+import { APIService } from './api.service';
 import { RestoCategoryInterface, recipeInterface } from './datas.interface';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(){
     
-    const recipesCategories= await this.GetRecipesService.getRecipe();
+    const recipesCategories= await this.APIService.getRecipe();
     this.recipesCategories = recipesCategories;  
     this.orderForm = new FormGroup({
       recipes: new FormArray([]),
@@ -50,6 +50,6 @@ export class AppComponent implements OnInit {
 
   }
   constructor(
-    private readonly GetRecipesService: GetRecipesService
+    private readonly APIService: APIService
   ){}
 }

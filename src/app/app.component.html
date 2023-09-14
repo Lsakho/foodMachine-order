@@ -1,9 +1,3 @@
-<section *ngFor="let category of recipesCategories">
-  <h2>{{category.title}}</h2>
-  <ul >
-    <li *ngFor="let recipe of category.recipes">
-    <app-recipe-element [recipe]="recipe" (recipeEvent)="actions($event)"></app-recipe-element>
-    </li>
-  </ul>
-</section>
+<!-- <app-order-page></app-order-page> -->
+<router-outlet></router-outlet>
 

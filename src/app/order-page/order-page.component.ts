@@ -60,13 +60,7 @@ export class OrderPageComponent implements OnInit {
   //display result in console
   console.log(this.orderForm.value)
   }
-  private  _saveData(){
-    const docRef = this.orderForm.value;
-    //commande.recipes = [$event.payload];
-
-    this.CommandeService.ajouterCommande(docRef);
-
-  }
+ 
 
 
   async actions(event: { type: string; payload?: any }) {
@@ -86,7 +80,7 @@ export class OrderPageComponent implements OnInit {
             break;
 
         case event.type === 'send-order':
-            await this._saveData();
+            await this.CommandeService.ajouterCommande(this.orderForm.value);
             alert('Order successfully sent!');
             break;
 

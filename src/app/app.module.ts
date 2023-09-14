@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+
 
 const routes: Routes = [
   {
@@ -45,11 +47,16 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    
     RouterModule.forRoot(routes),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth())
+
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

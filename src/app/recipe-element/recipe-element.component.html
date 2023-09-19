@@ -1,6 +1,13 @@
-<h3> {{recipe.title}}</h3>
-<img src="{{recipe.imageUrl}}" alt="">
-<p>{{recipe.price}}</p>
-<p>{{recipe.description}} </p>
-<button (click)="actions('add', recipe)">add</button>
-<button (click)="actions('remove', recipe)">remove</button>
+
+<div (click)="actions('add', recipe)">
+    <ion-avatar>
+        <img src="{{recipe.imageUrl}}" alt="">
+    </ion-avatar>
+    <ion-text color="primary" class="ion-text-center">
+        <h3>{{recipe.title}}</h3>
+        <p>{{recipe.price}}</p>
+    </ion-text>
+</div>
+<!-- <button (click)="actions('remove', recipe)">remove</button> -->
+
+

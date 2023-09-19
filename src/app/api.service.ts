@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { RestoInterface } from './datas.interface';
+import { RestoInterface, RestoCategoryInterface } from './datas.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +19,11 @@ export class APIService {
     const response = await firstValueFrom(request);
     return response.data;
   }
+  async getRecipeDetail() {
+    const url = 'assets/resto-data.json'; // Le chemin relatif à partir du dossier "assets"
+    const request = this._http.get<RestoCategoryInterface>(url);
+    const response = await firstValueFrom(request);
+    return response;
+  }
+  
 }

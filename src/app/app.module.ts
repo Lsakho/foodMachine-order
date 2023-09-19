@@ -15,6 +15,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { CuisineModule } from './cuisine/Modulecuisne/cuisine/cuisine.module';
+import { IonicModule } from '@ionic/angular';
 
 
 const routes: Routes = [
@@ -47,11 +49,13 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    CuisineModule,
     
     RouterModule.forRoot(routes),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    IonicModule.forRoot()
 
   ],
   providers: [

@@ -1,3 +1,16 @@
-<p>cuisine works!</p>
-<button (click)="signinGoogle()">signin </button> <br>
-<button (click)="signOut()">signOut</button>
+
+<section *ngIf="user$|async; else signoutTemplate">
+    <button (click)="actions('signout')">signout</button>
+    <pre>
+        <ul >
+            <li (click)="actions('displayCommandeDetails', data)" *ngFor="let data of datas$|async">
+                {{data.id}}
+            </li>
+          </ul> 
+        </pre>
+</section>
+<ng-template #signoutTemplate>
+    <section>
+        <button (click)="actions('signin')">signin</button>
+    </section>
+</ng-template>

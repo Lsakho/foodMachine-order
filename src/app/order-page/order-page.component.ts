@@ -4,6 +4,7 @@ import { RestoCategoryInterface, recipeInterface } from '../datas.interface';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommandeService } from '../Service/commande/commande.service';
 import { doc } from 'firebase/firestore';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-order-page',
@@ -16,17 +17,22 @@ export class OrderPageComponent implements OnInit {
   orderForm!: FormGroup;
   group!: FormGroup;
   recipesCategories!: RestoCategoryInterface[];
+  recipesDetail!: recipeInterface[]
 
   async ngOnInit(){
     
     const recipesCategories= await this.APIService.getRecipe();
-    this.recipesCategories = recipesCategories;  
+    this.recipesCategories = recipesCategories;
+    // const recipesDetail = await this.APIService.getRecipeDetail;
+    // this.recipesDetail = recipesDetail;
+              
     this.orderForm = new FormGroup({
       recipes: new FormArray([]),
       dateTime: new FormControl()
     });
+
   }
-  displayCategoryDetails(category: any) {
+  displayCategoryDetails(category: RestoCategoryInterface) {
     console.log('Category Title:', category.title);
     console.log('Category Recipes:', category.recipes);
 }
@@ -59,6 +65,27 @@ export class OrderPageComponent implements OnInit {
   
   //display result in console
   console.log(this.orderForm.value)
+   
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Choix ajouté',
+      duration: 2000, 
+      position: 'bottom' 
+    });
+  
+    toast.present();
+  }
+
+  async showLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Dismissing after 3 seconds...',
+      duration: 3000,
+    });
+
+    loading.present();
+    return loading
+
   }
  
 
@@ -70,9 +97,17 @@ export class OrderPageComponent implements OnInit {
         case event.type === 'selectCategory':
             console.log(event.type, event.payload);
             break;
+      
 
         case event.type === 'add':
+            const loading = await this.showLoading();
+
             this._addRecipeForm(event.payload.uuid, 1);
+            await loading.dismiss()
+            
+
+            this.presentToast()
+            
             break;
 
         case event.type === 'remove':
@@ -92,6 +127,8 @@ export class OrderPageComponent implements OnInit {
   constructor(
     private readonly APIService: APIService,
     private readonly CommandeService: CommandeService,
+    private readonly toastController: ToastController,
+    private readonly loadingCtrl: LoadingController
   ){}
  
  
